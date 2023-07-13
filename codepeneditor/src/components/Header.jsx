@@ -17,8 +17,6 @@ return (
           <img src= "https://img.icons8.com/?size=512&id=p03EZMcmuZH5&format=png" alt="logo" style={{width:40}} />
         </Toolbar>
       </AppBarContainer>
-
-
     </div>
   )
 }
