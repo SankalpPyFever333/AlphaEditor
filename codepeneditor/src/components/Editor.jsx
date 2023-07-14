@@ -1,6 +1,12 @@
 import React from 'react'
 import { Box , styled } from '@mui/material'
 import CloseFullscreenIcon from '@mui/icons-material/CloseFullscreen';
+import {Controlled as ControlledEditor} from "react-codemirror2";
+import 'codemirror/lib/codemirror.css';
+import "../App.css";
+import 'codemirror/mode/xml/xml'; //need this bcoz I am using XML tag also like <AppBar> , <Toolbar> etc.
+import 'codemirror/mode/javascript/javascript' ; //for supporting JS Files.
+
 const Heading = styled(Box)`
   background: #1d1e22;
   display: flex;
@@ -17,7 +23,7 @@ const Header = styled(Box)`
 
 `
 
-// react-codemirror is a react library that will detect the html, css and JS.
+// react-codemirror is a react library that will detect the html, css and JS and import the css files
 
 
 function Editor() {
@@ -43,9 +49,13 @@ function Editor() {
             </Heading>
             <CloseFullscreenIcon/>
       </Header>
-      <Box>
-
-      </Box>
+      < ControlledEditor 
+        className='controlled-editor'
+        options={{
+          theme: "material",
+          lineNumbers: true
+        }}
+      />
     </Box>
   )
 }

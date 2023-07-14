@@ -1,0 +1,16 @@
+/* these classes which I am using are the classname for the codemirror element, You can see these classes by inspecting the element. Actually here we are overriding the css of that class which is already defined. */
+.CodeMirror{
+  height: 430px !important;
+  color: #fff;
+  border: 2px solid red;
+}
+
+.CodeMirror-gutters{
+  background: #1d1e22 !important;
+
+}
+
+.CodeMirror-scroll{
+  background: #1d1e22;
+}
+
