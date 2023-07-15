@@ -1,12 +1,14 @@
 import React from 'react'
+import { useState } from 'react';
 import { Box , styled } from '@mui/material'
 import CloseFullscreenIcon from '@mui/icons-material/CloseFullscreen';
 import {Controlled as ControlledEditor} from "react-codemirror2";
 import 'codemirror/lib/codemirror.css';
 import "../App.css";
+import 'codemirror/theme/dracula.css';
 import 'codemirror/mode/xml/xml'; //need this bcoz I am using XML tag also like <AppBar> , <Toolbar> etc.
-import 'codemirror/mode/javascript/javascript' ; //for supporting JS Files.
-
+import 'codemirror/mode/javascript/javascript'; //for supporting JS Files.
+import 'codemirror/mode/htmlmixed/htmlmixed';
 
 const Container = styled(Box)`
   flex-grow: 1;
@@ -34,10 +36,19 @@ const Header = styled(Box)`
 // react-codemirror is a react library that will detect the html, css and JS and import the css files
 
 
-function Editor({heading,icon , bgcolor}) {
+function Editor({heading,icon , bgcolor,value, onChange,mode}) {
+  const handleChange = (editor, data, value)=>{
+    onChange(value);
+  }
+
+  const [open, setOpen] = useState(true);
+
+
   return (
       // we use <Box> from MUI instead of <div>, it works same as <div>.
-    <Container>
+    <Container 
+      style={open ? null: {flexGrow:0}}
+    >
       <Header>
             <Heading>
                   {/* making that Box to work as a span. */}
@@ -50,7 +61,7 @@ function Editor({heading,icon , bgcolor}) {
                         placeContent:"center",
                         borderRadius:5,
                         marginBottom:5,
-                        paddingBottom:3 ,
+                        paddingBottom:3,
                         color: "#000",
                         fontWeight:"bold",
                         marginRight:7
@@ -58,13 +69,25 @@ function Editor({heading,icon , bgcolor}) {
                   >{icon}</Box>
                   {heading}
             </Heading>
-            <CloseFullscreenIcon/>
+              <CloseFullscreenIcon 
+              fontSize='small'
+              style={{
+                alignSelf:"center"
+              }}
+              onClick = {()=>{
+                setOpen(prevState => !prevState);
+              }}
+              />
       </Header>
       < ControlledEditor 
         className='controlled-editor'
+        value={value}
+        onBeforeChange={handleChange}
         options={{
-          theme: "material",
-          lineNumbers: true
+          mode: mode,
+          theme: "dracula",
+          lineNumbers: true,
+          indentUnit: 5,
         }}
       />
     </Container>
