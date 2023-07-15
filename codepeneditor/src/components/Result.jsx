@@ -1,6 +1,16 @@
-import { Box} from '@mui/material'
+import { Box ,styled} from '@mui/material'
 import React, { useContext } from 'react'
 import { DataContext } from '../context/DataProvider'
+
+const ResCon = styled(Box)`
+  position:absolute;
+  margin-top:103px;
+  width:100%;
+  padding-top: 20px;
+  
+
+`
+
 
 function Result() {
       const {html, css,js} = useContext(DataContext);
@@ -16,9 +26,9 @@ function Result() {
 
 
   return (
-    <Box>
-      <iframe src= {srcCode} title='Output' sandbox='allow-scripts' width="100%" height="100%" frameborder="0"></iframe>
-    </Box>
+    <ResCon>
+      <iframe srcDoc= {srcCode} title='Output' sandbox='allow-scripts' width="100%" height="100%" frameborder="0" />
+    </ResCon>
   )
 }
 
