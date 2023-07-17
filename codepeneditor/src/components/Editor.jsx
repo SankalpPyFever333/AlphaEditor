@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState ,useRef } from 'react';
 import { Box , styled } from '@mui/material'
 import CloseFullscreenIcon from '@mui/icons-material/CloseFullscreen';
 import {Controlled as ControlledEditor} from "react-codemirror2";
@@ -37,18 +37,33 @@ const Header = styled(Box)`
 
 
 function Editor({heading,icon , bgcolor,value, onChange,mode}) {
+  const editorRef = useRef(null);
+  const [initialWidth, setNewWidth] = useState(33);
   const handleChange = (editor, data, value)=>{
     onChange(value);
   }
 
   
+  const scrennResizer = ()=>{
+    editorRef.current.addEventListener("mousemove" , (event)=>{
+      const containerWidth = editorRef.current.parentNode.offsetWidth;
+      console.log(containerWidth);
+      const viewportWidth = window.innerWidth;
+      console.log(viewportWidth)
+      const mouseX = event.clientX;
+      const newWidth = (mouseX/viewportWidth)*100;
+      console.log(newWidth);
+      setNewWidth(newWidth);
+    })
+
+  }
 
 
   return (
       // we use <Box> from MUI instead of <div>, it works same as <div>.
-    <Container 
-      
-    >
+    <Container style={{
+      width: `${initialWidth}vw`
+      }}>
       <Header>
             <Heading>
                   {/* making that Box to work as a span. */}
@@ -70,11 +85,12 @@ function Editor({heading,icon , bgcolor,value, onChange,mode}) {
                   {heading}
             </Heading>
               <CloseFullscreenIcon 
+              ref = {editorRef}
               fontSize='small'
               style={{
                 alignSelf:"center"
               }}
-              
+              onClick={scrennResizer}
               />
       </Header>
       < ControlledEditor 
