@@ -4,6 +4,7 @@ export const DataContext = createContext();
 
 
 const DataProvider = ({children})=>{
+      // const [width, setWidth] = useState(33);
       const [html , setHtml] = useState('');
       const [css , setCss] = useState('');
       const [js , setJS] = useState('');
@@ -15,7 +16,8 @@ const DataProvider = ({children})=>{
                         css,
                         setCss,
                         js,
-                        setJS
+                        setJS,
+                        
                   }}
             
             >

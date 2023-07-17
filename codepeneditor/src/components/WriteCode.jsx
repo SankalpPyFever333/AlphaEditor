@@ -11,9 +11,10 @@ const Container = styled(Box)`
 `
 
 function WriteCode() {
-  const {html,setHtml, css ,setCss, js, setJS} = useContext(DataContext);
+  const {html,setHtml, css ,setCss, js, setJS, width, setWidth} = useContext(DataContext);
 
   // using useContext bcoz I want to make the <Editor/> component as a controlled component(in which values are controlled bt react's state).
+  
   return (
     
       <Container>

@@ -43,8 +43,12 @@ function Editor({heading,icon , bgcolor,value, onChange,mode}) {
     onChange(value);
   }
 
+  const handleMouseEvent = ()=>{
+    editorRef.current.addEventListener("mousemove", screenResizer);
+    editorRef.current.addEventListener("mouseup", removeListener)
+  }
   
-  const scrennResizer = ()=>{
+  const screenResizer = ()=>{
     editorRef.current.addEventListener("mousemove" , (event)=>{
       const containerWidth = editorRef.current.parentNode.offsetWidth;
       console.log(containerWidth);
@@ -56,6 +60,11 @@ function Editor({heading,icon , bgcolor,value, onChange,mode}) {
       setNewWidth(newWidth);
     })
 
+  }
+
+  const removeListener= ()=>{
+    editorRef.current.removeEventListener("mousemove" ,screenResizer);
+    editorRef.current.removeEventListener("mouseup", removeListener);
   }
 
 
@@ -90,7 +99,7 @@ function Editor({heading,icon , bgcolor,value, onChange,mode}) {
               style={{
                 alignSelf:"center"
               }}
-              onClick={scrennResizer}
+              onClick={handleMouseEvent}
               />
       </Header>
       < ControlledEditor 
@@ -113,5 +122,5 @@ function Editor({heading,icon , bgcolor,value, onChange,mode}) {
 
 export default Editor
 
-
+// make you own conosle and display you js code output in that instead of inspecting and then seeing the output.
 
