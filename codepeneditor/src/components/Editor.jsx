@@ -41,13 +41,13 @@ function Editor({heading,icon , bgcolor,value, onChange,mode}) {
     onChange(value);
   }
 
-  const [open, setOpen] = useState(true);
+  
 
 
   return (
       // we use <Box> from MUI instead of <div>, it works same as <div>.
     <Container 
-      style={open ? null: {flexGrow:0}}
+      
     >
       <Header>
             <Heading>
@@ -74,9 +74,7 @@ function Editor({heading,icon , bgcolor,value, onChange,mode}) {
               style={{
                 alignSelf:"center"
               }}
-              onClick = {()=>{
-                setOpen(prevState => !prevState);
-              }}
+              
               />
       </Header>
       < ControlledEditor 
@@ -88,6 +86,8 @@ function Editor({heading,icon , bgcolor,value, onChange,mode}) {
           theme: "dracula",
           lineNumbers: true,
           indentUnit: 5,
+          lineWrapping:true,
+          lineWiseCopyCut:true,
         }}
       />
     </Container>

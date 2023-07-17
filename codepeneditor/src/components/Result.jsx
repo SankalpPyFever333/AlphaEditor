@@ -7,8 +7,8 @@ const ResCon = styled(Box)`
   margin-top:103px;
   width:100%;
   padding-top: 20px;
+  height:41vh;
   
-
 `
 
 
@@ -27,7 +27,7 @@ function Result() {
 
   return (
     <ResCon>
-      <iframe srcDoc= {srcCode} title='Output' sandbox='allow-scripts' width="100%" height="100%" frameborder="0" />
+      <iframe srcDoc= {srcCode} title='Output' sandbox='allow-scripts' width="100%" height="100%" />
     </ResCon>
   )
 }
