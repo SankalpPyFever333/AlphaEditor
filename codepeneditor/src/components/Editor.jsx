@@ -10,6 +10,9 @@ import 'codemirror/mode/xml/xml'; //need this bcoz I am using XML tag also like 
 import 'codemirror/mode/javascript/javascript'; //for supporting JS Files.
 import 'codemirror/mode/htmlmixed/htmlmixed';
 
+import 'codemirror/addon/hint/html-hint';
+import 'codemirror/addon/hint/show-hint';
+
 const Container = styled(Box)`
   flex-grow: 1;
   // we do not need to do display:flex bcoz its parent component have a flex property.
@@ -113,6 +116,13 @@ function Editor({heading,icon , bgcolor,value, onChange,mode}) {
           indentUnit: 5,
           lineWrapping:true,
           lineWiseCopyCut:true,
+          extraKeys: { 'Ctrl-Space': 'autocomplete' },
+          hintOptions: {
+            htmlhint: {
+              tagCasing: "lower",
+              htmlhintrc: ".htmlhintrc"
+            }
+          }
         }}
       />
     </Container>
@@ -123,4 +133,6 @@ function Editor({heading,icon , bgcolor,value, onChange,mode}) {
 export default Editor
 
 // make you own conosle and display you js code output in that instead of inspecting and then seeing the output.
+
+// Add autcompletion of html tag also.
 

@@ -4,7 +4,7 @@ import { DataContext } from '../context/DataProvider'
 
 const ResCon = styled(Box)`
   position:absolute;
-  margin-top:103px;
+  margin-top:60px;
   width:100%;
   padding-top: 20px;
   height:41vh;
